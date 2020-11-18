@@ -3,7 +3,7 @@
 ## Project setup
 ### Node Version
 ```
-v12.18.3 or check .nvmrc
+v11.9.0 or check .nvmrc
 ```
 ### Install Node Modules
 ```
