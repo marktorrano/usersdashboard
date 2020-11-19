@@ -16,4 +16,11 @@ export default {
 </script>
 
 <style>
+a,
+a:link,
+a:hover,
+a:visited {
+  color: #1867b3;
+  text-decoration: none;
+}
 </style>

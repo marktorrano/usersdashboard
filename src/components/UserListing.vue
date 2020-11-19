@@ -19,15 +19,17 @@
       </div>
     </div>
     <div class="user__list">
-      <div v-for="user in orderBy(filterBy(users, search), sortKey)"
+      <div v-for="(user, index) in orderBy(filterBy(users, search), sortKey)"
            class="user"
-           :key="user">
+           :key="index">
         <div class="user__thumbnail"></div>
         <div class="user__details">
-          <div class="user__name">{{user.name}}</div>
-          <div class="user__username">{{user.username}}</div>
+          <div class="user__info">
+            <div class="user__name">{{user.name}}</div>
+            <div class="user__username">{{user.username}}</div>
+          </div>
+          <router-link class="user__email" :to="{ name: 'User Details', params: { id: user.id} }">{{user.email}}</router-link>
         </div>
-        <router-link class="user__email" :to="{ name: 'User Details', params: { id: user.id} }">{{user.email}}</router-link>
       </div>
     </div>
   </div>
@@ -74,7 +76,7 @@ import Vue2Filters from "vue2-filters";
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page {
   max-width: 1440px;
   margin: 0 auto;
@@ -84,16 +86,32 @@ import Vue2Filters from "vue2-filters";
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .user__filters {
   display: flex;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .user__filter {
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
 }
 
 .user__list {
@@ -122,6 +140,12 @@ import Vue2Filters from "vue2-filters";
 .user__details {
   flex: 1;
   margin-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 </style>

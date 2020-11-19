@@ -30,17 +30,17 @@
       </div>
       <div class="userDetails__content">
         <h4>Company</h4>
-        <div class="userDetails__companyName">{{userData.company.name}}</div>
-        <div class="userDetails__companyBs">{{userData.company.bs}}</div>
-        <div class="userDetails__companyCatchPhrase">&quot;{{userData.company.catchPhrase}}&quot;</div>
+        <div class="userDetails__companyName" v-if="userData.company">{{userData.company.name}}</div>
+        <div class="userDetails__companyBs" v-if="userData.company">{{userData.company.bs}}</div>
+        <div class="userDetails__companyCatchPhrase" v-if="userData.company">&quot;{{userData.company.catchPhrase}}&quot;</div>
       </div>
     </div>
-    <div v-if="userPosts">
+    <div class="userPosts__container" v-if="userPosts">
       <div class="userPosts__heading">
         <h3>Posts by {{ userName }}</h3>
       </div>
       <div class="userPosts">
-        <div class="userDetails__content" v-for="post in userPosts" :key="post">
+        <div class="userDetails__content" v-for="(post, index) in userPosts" :key="index">
           <div class="userPosts__title">{{ post.title }}</div>
           <div class="userPosts__body">{{ post.body }}</div>
         </div>
@@ -95,7 +95,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page {
   max-width: 1440px;
   margin: 0 auto;
@@ -115,6 +115,24 @@ export default {
   flex-flow: row wrap;
   justify-content: space-between;
   margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 1024px) {
+    justify-content: space-around;
+  }
+
+  .userDetails__content {
+    @media (max-width: 768px) {
+      border: 0;
+    }
+
+    @media (max-width: 1024px) {
+      width: 100%
+    }
+  }
 }
 
 .userDetails__content {
@@ -122,6 +140,16 @@ export default {
   width: 30%;
   padding: 1rem;
   margin: 0.5rem 0;
+
+  @media (max-width: 768px) {
+    box-sizing: border-box;
+    width: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 1024px) {
+    width: 25%;
+  }
 }
 
 .userDetails__companyCatchPhrase {
@@ -132,6 +160,23 @@ export default {
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 2rem;
+}
+
+.userPosts__container {
+  border-top: 1px solid #ddd;
+
+  .userDetails__content {
+    width: 30%;
+
+    @media (max-width: 768px) {
+      border: 0;
+      border-bottom: 1px solid #333;
+    }
+
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+  }
 }
 
 </style>
