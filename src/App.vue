@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <User />
+    <div class="breadcrumbs">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import User from './components/User.vue'
 
 export default {
   name: 'app',
   components: {
-    User
   }
 }
 </script>

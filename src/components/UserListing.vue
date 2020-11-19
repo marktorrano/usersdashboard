@@ -1,7 +1,7 @@
 <template>
-  <div class="users">
+  <div class="users page">
     <div class="user__heading">
-      <h1>Users</h1>
+      <h3>Users</h3>
       <div class="user__filters">
         <div class="user__filter">
           <label>Search</label>
@@ -27,7 +27,7 @@
           <div class="user__name">{{user.name}}</div>
           <div class="user__username">{{user.username}}</div>
         </div>
-        <div class="user__email">{{user.email}}</div>
+        <router-link class="user__email" :to="{ name: 'User Details', params: { id: user.id} }">{{user.email}}</router-link>
       </div>
     </div>
   </div>
@@ -75,7 +75,7 @@ import Vue2Filters from "vue2-filters";
 </script>
 
 <style scoped>
-.users {
+.page {
   max-width: 1440px;
   margin: 0 auto;
 }
